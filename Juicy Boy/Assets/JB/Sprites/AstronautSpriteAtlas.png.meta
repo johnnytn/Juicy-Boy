@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: bf917cc0b02928e40a9985be078f8bb7
-timeCreated: 1440357440
+timeCreated: 1445181990
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -49,6 +49,7 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -159,7 +160,7 @@ TextureImporter:
         width: 12
         height: 5
       alignment: 9
-      pivot: {x: .180000007, y: .569999993}
+      pivot: {x: .171881989, y: .550518811}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: MachineGun
       rect:

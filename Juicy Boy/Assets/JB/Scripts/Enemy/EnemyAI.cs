@@ -25,35 +25,33 @@ public class EnemyAI : MonoBehaviour {
     // AI's speed per sec
     public float speed = 300f;
 
+    private bool searchForPlayer = false;
+
 
     void Start() {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
-        if (target == null) {
-            Debug.LogError("NO PLAYER FOUND!");
+        if (checkTarget()) {
+            // Start a new path to the target position, return the result to the OnPathComplete method
+            seeker.StartPath(transform.position, target.position, OnPathComplete);
         }
-
-        // Start a new path to the target position, return the result to the OnPathComplete method
-        seeker.StartPath(transform.position, target.position, OnPathComplete);
 
         StartCoroutine(updatePath());
     }
 
     private IEnumerator updatePath() {
-        if (target == null) {
-            // TODO: PLAYER SEARCH
-            throw new NotImplementedException();
+        if (checkTarget()) {
+            // Start a new path to the target position, return the result to the OnPathComplete method
+            seeker.StartPath(transform.position, target.position, OnPathComplete);
         }
-        // Start a new path to the target position, return the result to the OnPathComplete method
-        seeker.StartPath(transform.position, target.position, OnPathComplete);
 
         yield return new WaitForSeconds(1f / updateRate);
         StartCoroutine(updatePath());
     }
 
     public void OnPathComplete(Path p) {
-        Debug.Log("We got a path. Did it have an error?" + p.error);
+        //Debug.Log("We got a path. Did it have an error?" + p.error);
         if (!p.error) {
             path = p;
             currentWaypoint = 0;
@@ -63,21 +61,19 @@ public class EnemyAI : MonoBehaviour {
 
     // Best for update physics
     void FixedUpdate() {
-        if (target == null) {
-            //TODO : player search
+        if (!checkTarget() || path == null) {
             return;
         }
+        calculatePath();
+    }
 
-        if (path == null) {
-            return;
-        }
-
+    // Calculate and move the enemy towards the player
+    private void calculatePath() {
         if (currentWaypoint >= path.vectorPath.Count) {
             if (pathIsEnded) {
                 return;
             }
-
-            Debug.Log("END OF THE PATH REACHED");
+            // Debug.Log("END OF THE PATH REACHED");
             pathIsEnded = true;
             return;
         }
@@ -95,6 +91,32 @@ public class EnemyAI : MonoBehaviour {
             currentWaypoint++;
             return;
         }
-
     }
+
+    // Check the target if it's null search for player
+    private bool checkTarget() {
+        if (target == null) {
+            if (!searchForPlayer) {
+                searchForPlayer = true;
+                StartCoroutine(findPlayer());
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    // Find player
+    private IEnumerator findPlayer() {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) {
+            yield return new WaitForSeconds(0.5f);
+            StartCoroutine(findPlayer());
+        } else {
+            searchForPlayer = false;
+            target = player.transform;
+            StartCoroutine(updatePath());
+        }
+    }
+
 }

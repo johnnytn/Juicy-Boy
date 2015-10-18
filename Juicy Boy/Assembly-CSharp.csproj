@@ -47,7 +47,10 @@
   <ItemGroup>
      <Compile Include="Assets\JB\Scripts\Camera\Camera2DFollow.cs" />
      <Compile Include="Assets\JB\Scripts\Camera\CameraFollow.cs" />
-     <Compile Include="Assets\JB\Scripts\EnemyAI.cs" />
+     <Compile Include="Assets\JB\Scripts\Camera\CameraShake.cs" />
+     <Compile Include="Assets\JB\Scripts\Character.cs" />
+     <Compile Include="Assets\JB\Scripts\Enemy\Enemy.cs" />
+     <Compile Include="Assets\JB\Scripts\Enemy\EnemyAI.cs" />
      <Compile Include="Assets\JB\Scripts\Player\ArmRotation.cs" />
      <Compile Include="Assets\JB\Scripts\Player\MoveTrail.cs" />
      <Compile Include="Assets\JB\Scripts\Player\Player.cs" />
@@ -58,6 +61,7 @@
      <Compile Include="Assets\JB\Scripts\Scenario\Platformer2DUserControl.cs" />
      <Compile Include="Assets\JB\Scripts\Scenario\PlatformerCharacter2D.cs" />
      <Compile Include="Assets\JB\Scripts\Scenario\Tiling.cs" />
+     <Compile Include="Assets\JB\Scripts\StatusIndicator.cs" />
      <None Include="Assets\AstarPathfindingEditor\Editor\EditorAssets\Materials\Navmesh2.shader" />
      <None Include="Assets\Plugins\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
      <None Include="Assets\Plugins\AstarPathfindingProject\ExampleScenes\Materials\Projector Multiply.shader" />
@@ -71,17 +75,23 @@
      <None Include="Assets\Plugins\AstarPathfindingProject\Plugins\JsonFx\JsonFxLicense.txt" />
      <None Include="Assets\Plugins\AstarPathfindingProject\Plugins\JsonFx\Readme.txt" />
      <None Include="Assets\Plugins\AstarPathfindingProject\link.xml" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
- <Reference Include="Pathfinding.JsonFx">
- <HintPath>E:/Workspace/workspace_unity/Juicy-Boy/Juicy Boy/Assets/Plugins/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.Ionic.Zip.Reduced">
  <HintPath>E:/Workspace/workspace_unity/Juicy-Boy/Juicy Boy/Assets/Plugins/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+ </Reference>
+ <Reference Include="Pathfinding.JsonFx">
+ <HintPath>E:/Workspace/workspace_unity/Juicy-Boy/Juicy Boy/Assets/Plugins/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
