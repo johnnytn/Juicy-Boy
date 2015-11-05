@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using Pathfinding;
-using System;
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -31,13 +30,14 @@ public class EnemyAI : MonoBehaviour {
     void Start() {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+    }
 
-        if (checkTarget()) {
-            // Start a new path to the target position, return the result to the OnPathComplete method
-            seeker.StartPath(transform.position, target.position, OnPathComplete);
+    // Best for update physics
+    void FixedUpdate() {
+        if (!checkTarget() || path == null) {
+            return;
         }
-
-        StartCoroutine(updatePath());
+        calculatePath();
     }
 
     private IEnumerator updatePath() {
@@ -56,15 +56,6 @@ public class EnemyAI : MonoBehaviour {
             path = p;
             currentWaypoint = 0;
         }
-
-    }
-
-    // Best for update physics
-    void FixedUpdate() {
-        if (!checkTarget() || path == null) {
-            return;
-        }
-        calculatePath();
     }
 
     // Calculate and move the enemy towards the player
@@ -73,7 +64,6 @@ public class EnemyAI : MonoBehaviour {
             if (pathIsEnded) {
                 return;
             }
-            // Debug.Log("END OF THE PATH REACHED");
             pathIsEnded = true;
             return;
         }

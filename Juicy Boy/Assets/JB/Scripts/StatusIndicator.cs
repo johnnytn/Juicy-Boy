@@ -10,7 +10,7 @@ public class StatusIndicator : MonoBehaviour {
 
     void Awake() {
         if (healthBarRect == null || healthText == null) {
-            Debug.LogError("No health bar or text  object");
+            Debug.LogError("No health bar or text object");
         }
     }
 
@@ -20,5 +20,4 @@ public class StatusIndicator : MonoBehaviour {
         healthBarRect.localScale = new Vector3(value, healthBarRect.localScale.y, healthBarRect.localScale.z);
         healthText.text = current + "/" + max + " HP";
     }
-
 }

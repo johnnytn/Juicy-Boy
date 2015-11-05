@@ -43,15 +43,14 @@ public class GameMaster : MonoBehaviour {
     }
 
     public static void killEnemy(Enemy enemy) {
-        gm.killEnemyx(enemy);
+        gm.killEnemyPlusEffect(enemy);
     }
 
     // TODO : rename
-    private void killEnemyx(Enemy enemy) {
+    private void killEnemyPlusEffect(Enemy enemy) {
         GameObject deathParticles = Instantiate(enemy.deathParticles, enemy.transform.position, Quaternion.identity) as GameObject;
         Destroy(deathParticles, 5f);
         camerashake.shake(enemy.shakeAmt, enemy.shakeLenght);
         Destroy(enemy.gameObject);
-
     }
 }
