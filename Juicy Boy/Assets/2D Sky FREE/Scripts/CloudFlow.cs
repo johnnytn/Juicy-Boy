@@ -166,13 +166,13 @@ public class CloudFlow : MonoBehaviour
 					// Move duplicated cloud
 					if(m_CloudList[index].m_CloudFollower!=null)
 					{
-						m_CloudList[index].m_CloudFollower.transform.localPosition = new Vector3(m_CloudList[index].m_Cloud.transform.localPosition.x-(m_CloudList[index].m_Cloud.renderer.bounds.size.x),
+						m_CloudList[index].m_CloudFollower.transform.localPosition = new Vector3(m_CloudList[index].m_Cloud.transform.localPosition.x-(m_CloudList[index].m_Cloud.GetComponent<Renderer>().bounds.size.x),
 						                                                                         m_CloudList[index].m_Cloud.transform.localPosition.y,
 						                                                                         m_CloudList[index].m_Cloud.transform.localPosition.z);
 					}
 
 					// Is this cloud move off right most of the camera edge?
-					if(m_CloudList[index].m_Cloud.transform.localPosition.x>RightMostOfScreen.x+m_CloudList[index].m_Cloud.renderer.bounds.size.x/2)
+					if(m_CloudList[index].m_Cloud.transform.localPosition.x>RightMostOfScreen.x+m_CloudList[index].m_Cloud.GetComponent<Renderer>().bounds.size.x/2)
 					{
 						if(m_EnableLargeCloudLoop==true)
 						{
@@ -187,9 +187,9 @@ public class CloudFlow : MonoBehaviour
 							m_CloudList[index].m_MoveSpeed = Random.Range(m_MinSpeed,m_MaxSpeed);
 
 							// Pool cloud to other side of screen
-							m_CloudList[index].m_Cloud.transform.localPosition = new Vector3(LeftMostOfScreen.x-m_CloudList[index].m_Cloud.renderer.bounds.size.x,
+							m_CloudList[index].m_Cloud.transform.localPosition = new Vector3(LeftMostOfScreen.x-m_CloudList[index].m_Cloud.GetComponent<Renderer>().bounds.size.x,
 							                                                                 Random.Range(-m_Camera.orthographicSize/2, m_Camera.orthographicSize/2),
-							                                                                 m_CloudList[index].m_Cloud.renderer.bounds.size.z);
+							                                                                 m_CloudList[index].m_Cloud.GetComponent<Renderer>().bounds.size.z);
 						}
 					}
 				}
@@ -199,13 +199,13 @@ public class CloudFlow : MonoBehaviour
 					// Move duplicated cloud
 					if(m_CloudList[index].m_CloudFollower!=null)
 					{
-						m_CloudList[index].m_CloudFollower.transform.localPosition = new Vector3(m_CloudList[index].m_Cloud.transform.localPosition.x+(m_CloudList[index].m_Cloud.renderer.bounds.size.x),
+						m_CloudList[index].m_CloudFollower.transform.localPosition = new Vector3(m_CloudList[index].m_Cloud.transform.localPosition.x+(m_CloudList[index].m_Cloud.GetComponent<Renderer>().bounds.size.x),
 						                                                                         m_CloudList[index].m_Cloud.transform.localPosition.y,
 						                                                                         m_CloudList[index].m_Cloud.transform.localPosition.z);
 					}
 					
 					// Is this cloud move off left most of the camera edge?
-					if(m_CloudList[index].m_Cloud.transform.localPosition.x<LeftMostOfScreen.x-m_CloudList[index].m_Cloud.renderer.bounds.size.x/2)
+					if(m_CloudList[index].m_Cloud.transform.localPosition.x<LeftMostOfScreen.x-m_CloudList[index].m_Cloud.GetComponent<Renderer>().bounds.size.x/2)
 					{
 						if(m_EnableLargeCloudLoop==true)
 						{
@@ -220,9 +220,9 @@ public class CloudFlow : MonoBehaviour
 							m_CloudList[index].m_MoveSpeed = -Random.Range(m_MinSpeed,m_MaxSpeed);
 
 							// Pool cloud to other side of screen
-							m_CloudList[index].m_Cloud.transform.localPosition = new Vector3(RightMostOfScreen.x+m_CloudList[index].m_Cloud.renderer.bounds.size.x,
-							                                                                 Random.Range(m_CloudList[index].m_OriginalLocalPos.y-m_CloudList[index].m_Cloud.renderer.bounds.size.y, m_CloudList[index].m_OriginalLocalPos.y+m_CloudList[index].m_Cloud.renderer.bounds.size.y),
-							                                                                 m_CloudList[index].m_Cloud.renderer.bounds.size.z);
+							m_CloudList[index].m_Cloud.transform.localPosition = new Vector3(RightMostOfScreen.x+m_CloudList[index].m_Cloud.GetComponent<Renderer>().bounds.size.x,
+							                                                                 Random.Range(m_CloudList[index].m_OriginalLocalPos.y-m_CloudList[index].m_Cloud.GetComponent<Renderer>().bounds.size.y, m_CloudList[index].m_OriginalLocalPos.y+m_CloudList[index].m_Cloud.GetComponent<Renderer>().bounds.size.y),
+							                                                                 m_CloudList[index].m_Cloud.GetComponent<Renderer>().bounds.size.z);
 						}
 					}
 				}
@@ -252,7 +252,7 @@ public class CloudFlow : MonoBehaviour
 			Camera[] CameraList = FindObjectsOfType<Camera>();
 			foreach(Camera child in CameraList)
 			{
-				if(child.isOrthoGraphic==true)
+				if(child.orthographic==true)
 				{
 					// Keep only first Orthographic Camera
 					m_Camera = child;
