@@ -45,6 +45,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\2D Sky FREE\Scripts\CloudFlow.cs" />
+     <Compile Include="Assets\2D Sky FREE\Scripts\SkyBG.cs" />
      <Compile Include="Assets\JB\Scripts\Camera\Camera2DFollow.cs" />
      <Compile Include="Assets\JB\Scripts\Camera\CameraFollow.cs" />
      <Compile Include="Assets\JB\Scripts\Camera\CameraShake.cs" />
@@ -62,6 +64,7 @@
      <Compile Include="Assets\JB\Scripts\Scenario\PlatformerCharacter2D.cs" />
      <Compile Include="Assets\JB\Scripts\Scenario\Tiling.cs" />
      <Compile Include="Assets\JB\Scripts\StatusIndicator.cs" />
+     <Compile Include="Assets\JB\Scripts\WaveUI.cs" />
      <Compile Include="Assets\JB\Scripts\Waves\SpawnState.cs" />
      <Compile Include="Assets\JB\Scripts\Waves\Wave.cs" />
      <Compile Include="Assets\JB\Scripts\Waves\WaveSpawner.cs" />
@@ -74,6 +77,7 @@
      <None Include="Assets\Plugins\AstarPathfindingProject\Readme_upgrading.txt" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Plugins\AstarPathfindingProject\ExampleScenes\Materials\Projector Light.shader" />
+     <None Include="Assets\2D Sky FREE\!Readme.txt" />
      <None Include="Assets\Plugins\AstarPathfindingProject\Readme.txt" />
      <None Include="Assets\Plugins\AstarPathfindingProject\Plugins\JsonFx\JsonFxLicense.txt" />
      <None Include="Assets\Plugins\AstarPathfindingProject\Plugins\JsonFx\Readme.txt" />

@@ -28,8 +28,8 @@ public class GameMaster : MonoBehaviour {
 
         GetComponent<AudioSource>().Play();
         Instantiate(playerPreFab, spawnPoint.position, spawnPoint.rotation);
-        GameObject spawnParticles = Instantiate(spawnPreFab, spawnPoint.position, spawnPoint.rotation) as GameObject;
-        Destroy(spawnParticles, 3f);
+        Transform spawnParticles = Instantiate(spawnPreFab, spawnPoint.position, spawnPoint.rotation) as Transform;
+        Destroy(spawnParticles.gameObject, 3f);
     }
 
     public static void killCharacter(Character charracter) {
@@ -48,8 +48,8 @@ public class GameMaster : MonoBehaviour {
 
     // TODO : rename
     private void killEnemyPlusEffect(Enemy enemy) {
-        GameObject deathParticles = Instantiate(enemy.deathParticles, enemy.transform.position, Quaternion.identity) as GameObject;
-        Destroy(deathParticles, 5f);
+        Transform deathParticles = Instantiate(enemy.deathParticles, enemy.transform.position, Quaternion.identity) as Transform;
+        Destroy(deathParticles.gameObject, 2f);
         camerashake.shake(enemy.shakeAmt, enemy.shakeLenght);
         Destroy(enemy.gameObject);
     }
