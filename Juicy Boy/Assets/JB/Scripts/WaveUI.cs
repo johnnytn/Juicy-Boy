@@ -53,7 +53,7 @@ public class WaveUI : MonoBehaviour {
         if (previousState != SpawnState.SPAWNING) {
             waveAnimator.SetBool("WaveIncoming", true);
             waveAnimator.SetBool("WaveCountDown", false);
-            waveCountText.text = (waveSpawner.NextWave + 1).ToString();
+            waveCountText.text = (waveSpawner.WaveLabel).ToString();
         }
     }
 }

@@ -7,6 +7,7 @@ public class WaveSpawner : MonoBehaviour {
     public Transform[] spawnPoints;
     private SpawnState state = SpawnState.COUNTING;
     private int nextWave = 0;
+    private int waveLabel = 1;
     public float timeBetweenWaves = 5f;
     private float waveCountDown;
     // Search countDown essencial for searchs
@@ -15,7 +16,7 @@ public class WaveSpawner : MonoBehaviour {
     // Getters
     public SpawnState State { get { return this.state; } }
     public float WaveCountDown { get { return this.waveCountDown; } }
-    public int NextWave { get { return this.nextWave; } }
+    public int WaveLabel { get { return this.waveLabel; } }
 
     void Start() {
         if (spawnPoints.Length == 0) {
@@ -37,7 +38,7 @@ public class WaveSpawner : MonoBehaviour {
 
         if (waveCountDown <= 0) {
             if (state != SpawnState.SPAWNING) {
-                StartCoroutine(spawnWave(waves[nextWave]));
+                StartCoroutine(spawnWave(waves[0]));
             }
         } else {
             waveCountDown -= Time.deltaTime;
@@ -47,8 +48,8 @@ public class WaveSpawner : MonoBehaviour {
     // Spawn a wave of enemies in a given time
     IEnumerator spawnWave(Wave wave) {
         state = SpawnState.SPAWNING;
-
-        for (int i = 0; i < wave.count; i++) {
+        int enemyNumber = nextWave + 2;
+        for (int i = 0; i < enemyNumber; i++) {
             //Debug.Log("Spawning Enemy number" + i);
             spawnEnemy(wave.enemy);
             yield return new WaitForSeconds(1f / wave.rate);
@@ -69,15 +70,17 @@ public class WaveSpawner : MonoBehaviour {
         Debug.Log("Wave completed");
         state = SpawnState.COUNTING;
         waveCountDown = timeBetweenWaves;
-        int finalWave = waves.Length - 1;
-
-        if (nextWave == finalWave) {
-            nextWave = 0;
+        //int finalWave = waves.Length - 1;
+        bool increaseDifficult = (waveLabel + 1) / 5 == 1;
+        Debug.Log("waveLabel: " +waveLabel / 5);
+        if (increaseDifficult) {
+            //nextWave = 0;
             Enemy.difficultModifier = 2;
-            Debug.Log("All Waves completed");
-        } else {
-            nextWave++;
+            // Debug.Log("All Waves completed");
         }
+        nextWave++;
+        waveLabel++;
+
     }
 
     // Verify if there is any enemy alive

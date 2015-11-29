@@ -2,12 +2,12 @@
 
 public class Enemy : Character {
 
-    static public int difficultModifier = 1;
+    static public float difficultModifier = 1;
 
     public Transform deathParticles;
     public float shakeAmt = 0.1f;
     public float shakeLenght = 0.1f;
-    public float damage = 40;
+    public float damage = 20;
 
     void Start() {
         increaseDifficult();
@@ -15,14 +15,6 @@ public class Enemy : Character {
         updateStatusIndicator();
         if (deathParticles == null) {
             Debug.Log("NO DEATH PARTICLES ON ENEMY");
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D colInfo) {
-        Player player = colInfo.collider.GetComponent<Player>();
-        if (player != null) {
-            player.damagePlayer(damage);
-            damageEnemy(999);
         }
     }
 

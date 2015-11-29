@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour {
 
     public float fireRate = 0;
     public float damage = 10;
-    private float timeToFire = 0;
+    //private float timeToFire = 0;
     private float timeToSpawnEffect = 0;
     public float effectSpawnRate = 10;
     // Handle camera shaking
@@ -34,23 +34,7 @@ public class Weapon : MonoBehaviour {
         }
     }
 
-    // Update is called once per frame
-    void Update() {
-        action();
-    }
-
-    private void action() {
-        if (fireRate == 0) {
-            if (Input.GetButtonDown("Fire1")) {
-                shoot();
-            }
-        } else {
-            if (Input.GetButton("Fire1") && Time.time > timeToFire) {
-                timeToFire = Time.time + 1 / fireRate;
-                shoot();
-            }
-        }
-    }
+    
 
     // Basic shooting method
     private void shoot() {

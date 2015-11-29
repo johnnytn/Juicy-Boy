@@ -27,8 +27,15 @@ public class Character : MonoBehaviour {
     public void damageCharacter(float damage) {
         currentHealth -= damage;
         if (currentHealth <= 0) {
-            GameMaster.killCharacter(this);
+            if (this.type == 0) {
+                Player player = (Player)this;
+                GameMaster.killPlayer(player);
+            } else {
+                Enemy enemy = (Enemy)this;
+                GameMaster.killEnemy(enemy);
+            }
         }
+        updateStatusIndicator();
     }
 
     public void updateStatusIndicator() {

@@ -6,25 +6,32 @@ using System.Collections;
 [RequireComponent(typeof(Seeker))]
 public class EnemyAI : MonoBehaviour {
 
-    private Seeker seeker;
-    private Rigidbody2D rb;
+    [HideInInspector]
+    public Seeker seeker;
+    [HideInInspector]
+    public Rigidbody2D rb;
+    // Calculated path
+    public Path path;
+    public Transform target;
+    public ForceMode2D fMode;
+
     // Waypoint we are currently moving towards
-    private int currentWaypoint = 0;
+    [HideInInspector]
+    public int currentWaypoint = 0;
     // The max distance from the AI to the waypoint for it to continue to the next waypoint
     public float nextWayPointDistance = 3;
 
-    // Calculated path
-    public Path path;
     [HideInInspector]
     public bool pathIsEnded = false;
-
-    public Transform target;
-    public ForceMode2D fMode;
     public float updateRate = 2f;
     // AI's speed per sec
     public float speed = 300f;
 
+    public bool closeRange = false;
+    public bool longRange = false;
     private bool searchForPlayer = false;
+    [HideInInspector]
+    public bool playerCloseEnough = false;
 
 
     void Start() {
@@ -37,13 +44,18 @@ public class EnemyAI : MonoBehaviour {
         if (!checkTarget() || path == null) {
             return;
         }
-        calculatePath();
+        if (!playerCloseEnough) {
+//            Debug.Log(playerCloseEnough+ "!");
+            calculatePath();
+        }
     }
 
     private IEnumerator updatePath() {
         if (checkTarget()) {
+            int pos = closeRange ? 1 : 3;
+            //int fallBack = longRange ? -1 : 1;
             // Start a new path to the target position, return the result to the OnPathComplete method
-            seeker.StartPath(transform.position, target.position, OnPathComplete);
+            seeker.StartPath(transform.position, target.position / pos, OnPathComplete);
         }
 
         yield return new WaitForSeconds(1f / updateRate);
@@ -84,7 +96,7 @@ public class EnemyAI : MonoBehaviour {
     }
 
     // Check the target if it's null search for player
-    private bool checkTarget() {
+    public bool checkTarget() {
         if (target == null) {
             if (!searchForPlayer) {
                 searchForPlayer = true;

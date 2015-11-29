@@ -19,12 +19,12 @@ public class Player : Character {
             GameMaster.killPlayer(this);
             lifes--;
         }
+        updateStatusIndicator();
 
         if(lifes <= 0) {
             Debug.Log("GAME OVER");
             return;
         }
-        updateStatusIndicator();
     }
 
     private void fallDeath() {
